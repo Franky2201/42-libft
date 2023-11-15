@@ -29,10 +29,10 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_strjoin(char *s1, char *s2);
-size_t	ft_strcpy(char *s1, char *s2);
+char	*ft_gnl_strjoin(char *s1, char *s2);
+size_t	ft_gnl_strcpy(char *s1, char *s2);
 size_t	ft_strfind(char *s, char c);
-size_t	ft_strlen(char *s);
+size_t	ft_gnl_strlen(char *s);
 void	ft_update(char *buffer);
 
 #endif

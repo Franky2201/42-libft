@@ -25,7 +25,7 @@ size_t	ft_strfind(char *s, char c)
 	return (i);
 }
 
-size_t	ft_strlen(char *s)
+size_t	ft_gnl_strlen(char *s)
 {
 	size_t	i;
 
@@ -37,7 +37,7 @@ size_t	ft_strlen(char *s)
 	return (i);
 }
 
-size_t	ft_strcpy(char *s1, char *s2)
+size_t	ft_gnl_strcpy(char *s1, char *s2)
 {
 	size_t	i;
 
@@ -50,13 +50,13 @@ size_t	ft_strcpy(char *s1, char *s2)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_gnl_strjoin(char *s1, char *s2)
 {
 	size_t	i;
 	size_t	j;
 	char	*ret;
 
-	ret = (char *)malloc(ft_strlen(s1) + ft_strfind(s2, '\n') + 1);
+	ret = (char *)malloc(ft_gnl_strlen(s1) + ft_strfind(s2, '\n') + 1);
 	if (!ret)
 	{
 		free((void *)s1);
@@ -64,7 +64,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	i = 0;
 	if (s1)
-		i = ft_strcpy(ret, s1);
+		i = ft_gnl_strcpy(ret, s1);
 	j = 0;
 	while (s2[j] && s2[j] != '\n')
 	{

@@ -43,7 +43,7 @@ char	*get_next_line(int fd)
 	line = NULL;
 	while (true)
 	{
-		if (ft_strlen(buffers[fd]) == 0)
+		if (ft_gnl_strlen(buffers[fd]) == 0)
 		{
 			i = read(fd, buffers[fd], BUFFER_SIZE);
 			if (i == -1)
@@ -54,11 +54,11 @@ char	*get_next_line(int fd)
 			else if (i == 0)
 				return (line);
 		}
-		line = ft_strjoin(line, buffers[fd]);
+		line = ft_gnl_strjoin(line, buffers[fd]);
 		if (line == NULL)
 			return (NULL);
 		ft_update(buffers[fd]);
-		if (line[ft_strlen(line) - 1] == '\n')
+		if (line[ft_gnl_strlen(line) - 1] == '\n')
 			return (line);
 	}
 }

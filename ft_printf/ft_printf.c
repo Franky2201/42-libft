@@ -46,20 +46,20 @@ static void	ft_putunbr(unsigned int n, ssize_t *len)
 	(*len)++;
 }
 
-static void	ft_format(char c, va_list args, ssize_t *len)
+static void	ft_format(char c, va_list *args, ssize_t *len)
 {
 	if (c == '%')
 		ft_putchar('%', len);
 	else if (c == 'c')
-		ft_putchar((char)va_arg(args, int), len);
+		ft_putchar((char)va_arg(*args, int), len);
 	else if (c == 's')
-		ft_putstr(va_arg(args, char *), len);
+		ft_putstr(va_arg(*args, char *), len);
 	else if (c == 'p' || c == 'x' || c == 'X')
-		ft_putnbr_hex(va_arg(args, unsigned long long int), c, len);
+		ft_putnbr_hex(va_arg(*args, unsigned long long int), c, len);
 	else if (c == 'd' || c == 'i')
-		ft_putnbr(va_arg(args, int), len);
+		ft_putnbr(va_arg(*args, int), len);
 	else if (c == 'u')
-		ft_putunbr(va_arg(args, unsigned int), len);
+		ft_putunbr(va_arg(*args, unsigned int), len);
 }
 
 int	ft_printf(const char *fmt, ...)
@@ -78,7 +78,7 @@ int	ft_printf(const char *fmt, ...)
 		if (fmt[i] == '%')
 		{
 			i++;
-			ft_format(fmt[i], args, &len);
+			ft_format(fmt[i], &args, &len);
 		}
 		else
 			ft_putchar((char)fmt[i], &len);

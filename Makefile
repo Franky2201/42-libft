@@ -69,7 +69,13 @@ FUNCTIONS :=	ft_atoi.c \
 
 SRCS :=		$(FUNCTIONS)
 
+# obsolete \
+SRCS_BONUS := $(FUNCTIONS_BONUS)
+
 OBJS :=		$(SRCS:.c=.o)
+
+# obsolete \
+OBJS_BONUS := $(SRCS_BONUS:.c=.o)
 
 INCLUDE :=	libft.h \
 			ft_printf/ft_printf.h \
@@ -81,11 +87,15 @@ $(NAME):	$(OBJS)
 			ar -rc $@ $^
 
 clean:
-			rm -rf $(OBJS)
+			rm -rf $(OBJS) # obsolete $(OBJS_BONUS)
 
 fclean:		clean
 			rm -rf $(NAME)
 
 re:			fclean all
 
-.PHONY: all clean fclean re
+# obsolete \
+bonus:		$(NAME) $(OBJS_BONUS) \
+			ar -rc $^
+
+.PHONY: all clean fclean re # obsolete bonus

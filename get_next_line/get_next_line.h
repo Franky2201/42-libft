@@ -6,7 +6,7 @@
 /*   By: gde-win <gde-win@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 14:31:57 by gde-win           #+#    #+#             */
-/*   Updated: 2023/10/10 12:44:48 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/01/06 16:09:02 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_gnl_strjoin(char *s1, char *s2);
 size_t	ft_gnl_strcpy(char *s1, char *s2);
-size_t	ft_strfind(char *s, char c);
+char	*ft_gnl_strjoin(char *s1, char *s2);
 size_t	ft_gnl_strlen(char *s);
+size_t	ft_strfind(char *s, char c);
 void	ft_update(char *buffer);
 
 #endif

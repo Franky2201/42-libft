@@ -6,7 +6,7 @@
 /*   By: gde-win <gde-win@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:41:57 by gde-win           #+#    #+#             */
-/*   Updated: 2023/10/10 12:43:54 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/01/06 16:09:38 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,30 +62,3 @@ char	*get_next_line(int fd)
 			return (line);
 	}
 }
-/*
-#include <stdio.h>
-#include <fcntl.h>
-
-int main(int ac, char **av)
-{
-	char *line;
-	char *line1;
-	int	fd;
-	int	fd1;
-	(void)ac;
-
-	fd = open(av[1], O_RDONLY);
-	fd1 = open(av[2], O_RDONLY);
-	do
-	{
-		line = get_next_line(fd);
-		line1 = get_next_line(fd1);
-		printf("file 1: %s", line);
-		printf("file 2: %s", line1);
-		free(line);
-		free(line1);
-	} while (line || line1);
-	close(fd);
-	close(fd1);
-	return (0);
-}*/

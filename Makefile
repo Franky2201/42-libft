@@ -6,16 +6,15 @@
 #    By: gde-win <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 13:05:02 by gde-win           #+#    #+#              #
-#    Updated: 2024/01/06 16:29:41 by gde-win          ###   ########.fr        #
+#    Updated: 2024/02/20 20:23:10 by gde-win          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME :=		libft.a
-
-CC :=		cc
-
-CFLAGS :=	-Wall -Wextra -Werror -I.
-
+NAME :=			libft.a
+CC :=			cc
+AR :=			ar
+CFLAGS :=		-Wall -Wextra -Werror
+INC_FILES :=	-I.
 FUNCTIONS :=	ft_atoi.c \
 				ft_bzero.c \
 				ft_calloc.c \
@@ -39,11 +38,10 @@ FUNCTIONS :=	ft_atoi.c \
 				ft_memcpy.c \
 				ft_memmove.c \
 				ft_memset.c \
-				ft_printf/ft_printf.c \
-				ft_printf/ft_putchar.c \
-				ft_printf/ft_putnbr.c \
-				ft_printf/ft_putstr.c \
-				ft_printf/ft_strlen.c \
+				ft_printf.c \
+				ft_printf_putchar.c \
+				ft_printf_putnbr.c \
+				ft_printf_putstr.c \
 				ft_putchar_fd.c \
 				ft_putendl_fd.c \
 				ft_putnbr_fd.c \
@@ -65,28 +63,34 @@ FUNCTIONS :=	ft_atoi.c \
 				ft_substr.c \
 				ft_tolower.c \
 				ft_toupper.c \
-				get_next_line/get_next_line.c \
-				get_next_line/get_next_line_utils.c
+				get_next_line.c \
+				get_next_line_utils.c
+SRCS :=			$(FUNCTIONS)
+OBJS_DIR :=		obj
+OBJS :=			$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
+GREEN :=		\033[0;32m
+RED :=			\033[0;31m
+END_COLOR :=	\033[0m
 
-SRCS :=		$(FUNCTIONS)
+all:
+	@echo "$(GREEN)Making libft$(END_COLOR)"
+	@mkdir -p $(OBJS_DIR)
+	@make $(NAME)
 
-OBJS :=		$(SRCS:.c=.o)
+$(NAME): $(OBJS)
+	@$(AR) -rc $@ $^
 
-INCLUDE :=	libft.h \
-			ft_printf/ft_printf.h \
-			get_next_line/get_next_line.h
-
-all:		$(NAME)
-
-$(NAME):	$(OBJS)
-			ar -rc $@ $^
+$(OBJS_DIR)/%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INC_FILES)
 
 clean:
-			rm -rf $(OBJS)
+	@echo "$(RED)Removing libft objects$(END_COLOR)"
+	@rm -rf $(OBJS_DIR)
 
-fclean:		clean
-			rm -rf $(NAME)
+fclean: clean
+	@echo "$(RED)Removing libft archive$(END_COLOR)"
+	@rm -rf $(NAME)
 
-re:			fclean all
+re: fclean all
 
 .PHONY: all clean fclean re

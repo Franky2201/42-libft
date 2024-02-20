@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gde-win <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 17:43:50 by gde-win           #+#    #+#             */
-/*   Updated: 2023/08/01 12:30:03 by gde-win          ###   ########.fr       */
+/*   Created: 2023/08/01 14:45:15 by gde-win           #+#    #+#             */
+/*   Updated: 2024/02/20 20:11:37 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	size_t	size;
-	char	*sub;
+# include "libft.h"
+# include <stdarg.h>
 
-	if (!s || start < 0 || len < 0)
-		return (NULL);
-	size = ft_strlen(s);
-	if (len > size - start)
-		len = size - start;
-	if (start > size)
-		return (ft_strdup(""));
-	sub = (char *)malloc(len + 1);
-	if (!sub)
-		return (NULL);
-	ft_strlcpy(sub, s + start, len + 1);
-	return (sub);
-}
+int		ft_printf(const char *fmt, ...);
+void	ft_printf_putchar(char c, ssize_t *len);
+void	ft_printf_putnbr(int n, ssize_t *len);
+void	ft_printf_putstr(char *s, ssize_t *len);
+
+#endif

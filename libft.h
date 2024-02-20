@@ -6,7 +6,7 @@
 /*   By: gde-win <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:34:51 by gde-win           #+#    #+#             */
-/*   Updated: 2024/01/06 15:51:42 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/02/20 20:09:25 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-# include "ft_printf/ft_printf.h"
-# include "get_next_line/get_next_line.h"
+# include "ft_printf.h"
+# include "get_next_line.h"
 
 typedef struct s_list
 {

@@ -6,7 +6,7 @@
 /*   By: gde-win <gde-win@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 23:29:29 by gde-win           #+#    #+#             */
-/*   Updated: 2023/06/10 21:39:44 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/02/26 15:39:31 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	if (!lst)
-		return ;
+	t_list	*last;
+
 	if (lst)
 	{
-		if (*lst)
-			(ft_lstlast(*lst))->next = new;
+		if (*lst && new)
+		{
+			last = ft_lstlast(*lst);
+			last->next = new;
+			new->previous = last;
+		}
 		else
 			*lst = new;
 	}

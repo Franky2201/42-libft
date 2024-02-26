@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstfirst.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-win <gde-win@student.s19.be>           +#+  +:+       +#+        */
+/*   By: gde-win <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 23:23:12 by gde-win           #+#    #+#             */
-/*   Updated: 2024/02/26 15:32:15 by gde-win          ###   ########.fr       */
+/*   Created: 2024/02/26 15:30:26 by gde-win           #+#    #+#             */
+/*   Updated: 2024/02/26 18:15:29 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+t_list	*ft_lstfirst(t_list *lst)
 {
 	if (lst)
-		while (lst->next)
-			lst = lst->next;
+		while (lst->previous)
+			lst = lst->previous;
 	return (lst);
 }

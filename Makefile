@@ -6,14 +6,14 @@
 #    By: gde-win <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 13:05:02 by gde-win           #+#    #+#              #
-#    Updated: 2024/02/20 20:23:10 by gde-win          ###   ########.fr        #
+#    Updated: 2024/02/26 15:42:35 by gde-win          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME :=			libft.a
 CC :=			cc
 AR :=			ar
-CFLAGS :=		-Wall -Wextra -Werror
+CFLAGS :=		-Wall -Wextra -Werror -fsanitize=address -g
 INC_FILES :=	-I.
 FUNCTIONS :=	ft_atoi.c \
 				ft_bzero.c \
@@ -28,6 +28,7 @@ FUNCTIONS :=	ft_atoi.c \
 				ft_lstadd_front.c \
 				ft_lstclear.c \
 				ft_lstdelone.c \
+				ft_lstfirst.c \
 				ft_lstiter.c \
 				ft_lstlast.c \
 				ft_lstmap.c \
@@ -84,8 +85,11 @@ $(OBJS_DIR)/%.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INC_FILES)
 
 clean:
+ifeq ($(wildcard $(OBJS_DIR)),)
+else
 	@echo "$(RED)Removing libft objects$(END_COLOR)"
 	@rm -rf $(OBJS_DIR)
+endif
 
 fclean: clean
 	@echo "$(RED)Removing libft archive$(END_COLOR)"

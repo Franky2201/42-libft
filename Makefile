@@ -6,7 +6,7 @@
 #    By: gde-win <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 13:05:02 by gde-win           #+#    #+#              #
-#    Updated: 2024/04/10 21:35:51 by gde-win          ###   ########.fr        #
+#    Updated: 2024/04/10 22:21:52 by gde-win          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,15 +78,18 @@ RED :=			\033[0;31m
 END_COLOR :=	\033[0m
 
 all:
-	@echo "$(GREEN)Making libft$(END_COLOR)"
+	@echo "$(GREEN)Making libft"
 	@mkdir -p $(OBJS_DIR)
+	@echo -n \[
 	@make $(NAME)
+	@echo "]$(END_COLOR)"
 
 $(NAME): $(OBJS)
 	@$(AR) -rc $@ $^
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INC_FILES)
+	@echo -n =
 
 asan: CFLAGS += $(ASAN_FLAGS)
 asan: all

@@ -6,15 +6,16 @@
 #    By: gde-win <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 13:05:02 by gde-win           #+#    #+#              #
-#    Updated: 2024/02/26 15:42:35 by gde-win          ###   ########.fr        #
+#    Updated: 2024/04/10 21:35:51 by gde-win          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME :=			libft.a
 CC :=			cc
 AR :=			ar
-CFLAGS :=		-Wall -Wextra -Werror -fsanitize=address -g
-INC_FILES :=	-I.
+CFLAGS :=		-Wall -Wextra -Werror
+ASAN_FLAGS:=	-fsanitize=address -g
+INC_FILES :=	-I/inc
 FUNCTIONS :=	ft_atoi.c \
 				ft_bzero.c \
 				ft_calloc.c \
@@ -24,11 +25,13 @@ FUNCTIONS :=	ft_atoi.c \
 				ft_isdigit.c \
 				ft_isprint.c \
 				ft_itoa.c \
+				ft_llitoa.c \
 				ft_lstadd_back.c \
 				ft_lstadd_front.c \
 				ft_lstclear.c \
 				ft_lstdelone.c \
 				ft_lstfirst.c \
+				ft_lstinsert.c \
 				ft_lstiter.c \
 				ft_lstlast.c \
 				ft_lstmap.c \
@@ -66,9 +69,10 @@ FUNCTIONS :=	ft_atoi.c \
 				ft_toupper.c \
 				get_next_line.c \
 				get_next_line_utils.c
-SRCS :=			$(FUNCTIONS)
+SRCS_DIR :=		src
+SRCS :=			$(addprefix $(SRCS_DIR)/, $(FUNCTIONS))
 OBJS_DIR :=		obj
-OBJS :=			$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
+OBJS :=			$(addprefix $(OBJS_DIR)/, $(SRCS:$(SRCS_DIR)/%.c=%.o))
 GREEN :=		\033[0;32m
 RED :=			\033[0;31m
 END_COLOR :=	\033[0m
@@ -81,8 +85,12 @@ all:
 $(NAME): $(OBJS)
 	@$(AR) -rc $@ $^
 
-$(OBJS_DIR)/%.o: %.c
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INC_FILES)
+
+asan: CFLAGS += $(ASAN_FLAGS)
+asan: all
+	@echo "$(RED)ADDRESS SANITIZER ON$(END_COLOR)"
 
 clean:
 ifeq ($(wildcard $(OBJS_DIR)),)
@@ -92,9 +100,12 @@ else
 endif
 
 fclean: clean
+ifeq ($(wildcard $(NAME)),)
+else
 	@echo "$(RED)Removing libft archive$(END_COLOR)"
 	@rm -rf $(NAME)
+endif
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all asan clean fclean re
